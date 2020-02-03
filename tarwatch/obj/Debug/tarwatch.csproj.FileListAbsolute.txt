@@ -1,0 +1,14 @@
+D:\Programozas\Programok_gited\Tarkovtimer\Tarkovtimer\tarwatch\bin\Debug\tarwatch.exe.config
+D:\Programozas\Programok_gited\Tarkovtimer\Tarkovtimer\tarwatch\bin\Debug\tarwatch.exe
+D:\Programozas\Programok_gited\Tarkovtimer\Tarkovtimer\tarwatch\bin\Debug\tarwatch.pdb
+D:\Programozas\Programok_gited\Tarkovtimer\Tarkovtimer\tarwatch\obj\Debug\tarwatch.csprojAssemblyReference.cache
+D:\Programozas\Programok_gited\Tarkovtimer\Tarkovtimer\tarwatch\obj\Debug\MainWindow.g.cs
+D:\Programozas\Programok_gited\Tarkovtimer\Tarkovtimer\tarwatch\obj\Debug\App.g.cs
+D:\Programozas\Programok_gited\Tarkovtimer\Tarkovtimer\tarwatch\obj\Debug\tarwatch_MarkupCompile.cache
+D:\Programozas\Programok_gited\Tarkovtimer\Tarkovtimer\tarwatch\obj\Debug\tarwatch_MarkupCompile.lref
+D:\Programozas\Programok_gited\Tarkovtimer\Tarkovtimer\tarwatch\obj\Debug\MainWindow.baml
+D:\Programozas\Programok_gited\Tarkovtimer\Tarkovtimer\tarwatch\obj\Debug\tarwatch.g.resources
+D:\Programozas\Programok_gited\Tarkovtimer\Tarkovtimer\tarwatch\obj\Debug\tarwatch.Properties.Resources.resources
+D:\Programozas\Programok_gited\Tarkovtimer\Tarkovtimer\tarwatch\obj\Debug\tarwatch.csproj.GenerateResource.cache
+D:\Programozas\Programok_gited\Tarkovtimer\Tarkovtimer\tarwatch\obj\Debug\tarwatch.exe
+D:\Programozas\Programok_gited\Tarkovtimer\Tarkovtimer\tarwatch\obj\Debug\tarwatch.pdb
