@@ -24,16 +24,22 @@ namespace tarwatch
 
         // long Realtime = 0;
         // long Tarkovtime = 0;
-        DateTime tarkovtime;
-        
+        //DateTime tarkovtime;
+        DateTime origin;
+        DateTime currentTime;
+        TimeSpan offsetTime;
+        TimeSpan elapsedSpan;
+        long elapsedTicks;
 
 
         public MainWindow()
         {
             InitializeComponent();
-            tarkovtime = DateTime.Now;
+            //tarkovtime = DateTime.Now;
+            origin = DateTime.Now;
+            offsetTime = new TimeSpan(100,0, 0, 0);
             dispatcherTimer.Tick += new EventHandler(Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0,0,100);
             dispatcherTimer.Start();
 
 
@@ -41,18 +47,27 @@ namespace tarwatch
 
         private void Tick(object sender, EventArgs e)
         {
-           Realtimetext.Content = DateTime.Now.ToString("HH:mm:ss");
-            tarkovtime=tarkovtime.AddSeconds(7);
-            Tarkovtimetext.Content = tarkovtime.ToString("HH:mm:ss");
-            Tarkovtime12text.Content = tarkovtime.AddHours(12).ToString("HH:mm:ss");
+
+            currentTime = DateTime.Now;
+            elapsedTicks = (currentTime.Ticks - origin.Ticks) * 7 + offsetTime.Ticks;
+            elapsedSpan = TimeSpan.FromTicks(elapsedTicks);
+            
+
+            Realtimetext.Content = currentTime.ToString("hh':'mm':'ss");
+            Tarkovtimetext.Content =  elapsedSpan.ToString("hh':'mm':'ss");
+            Tarkovtime12text.Content = elapsedSpan.Add(TimeSpan.FromHours(12)).ToString("hh':'mm':'ss");
+
 
         }
         private void Refresh()
         {
-            Realtimetext.Content = DateTime.Now.ToString("HH:mm:ss");
-            //tarkovtime = tarkovtime.AddSeconds(7);
-            Tarkovtimetext.Content = tarkovtime.ToString("HH:mm:ss");
-            Tarkovtime12text.Content = tarkovtime.AddHours(12).ToString("HH:mm:ss");
+
+            elapsedTicks = (currentTime.Ticks - origin.Ticks) * 7 + offsetTime.Ticks;
+            elapsedSpan = TimeSpan.FromTicks(elapsedTicks);
+
+            Realtimetext.Content = currentTime.ToString("hh':'mm':'ss");
+            Tarkovtimetext.Content = elapsedSpan.ToString("hh':'mm':'ss");
+            Tarkovtime12text.Content = elapsedSpan.Add(TimeSpan.FromHours(12)).ToString("hh':'mm':'ss");
 
         }
 
@@ -68,25 +83,24 @@ namespace tarwatch
             //int i = e.Delta;
             if (e.Delta > 0)
             {
-                tarkovtime = tarkovtime.AddHours(1);
+                offsetTime = offsetTime.Add(TimeSpan.FromHours(1));
             }
             else if (e.Delta < 0)
             {
-                tarkovtime = tarkovtime.Subtract(TimeSpan.FromHours(1));
+                offsetTime = offsetTime.Subtract(TimeSpan.FromHours(1));
             }
             Refresh();
-            e.Handled = false;
         }
 
         private void minute_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
             if (e.Delta > 0)
             {
-                tarkovtime = tarkovtime.AddMinutes(1);
+                offsetTime = offsetTime.Add(TimeSpan.FromMinutes(1));
             }
             else if (e.Delta < 0)
             {
-                tarkovtime = tarkovtime.Subtract(TimeSpan.FromMinutes(1));
+                offsetTime = offsetTime.Subtract(TimeSpan.FromMinutes(1));
             }
             Refresh();
         }
@@ -95,11 +109,11 @@ namespace tarwatch
         {
             if (e.Delta > 0)
             {
-                tarkovtime = tarkovtime.AddSeconds(1);
+                offsetTime = offsetTime.Add(TimeSpan.FromSeconds(1));
             }
             else if (e.Delta < 0)
             {
-                tarkovtime = tarkovtime.Subtract(TimeSpan.FromSeconds(1));
+                offsetTime = offsetTime.Subtract(TimeSpan.FromSeconds(1));
             }
             Refresh();
         }
@@ -119,6 +133,12 @@ namespace tarwatch
         {
             Window window = (Window)sender;
             window.Topmost = true;
+        }
+
+        private void resetbtn_Click(object sender, RoutedEventArgs e)
+        {
+            origin = DateTime.Now;
+            offsetTime = new TimeSpan(100,0, 0, 0);
         }
     }
     

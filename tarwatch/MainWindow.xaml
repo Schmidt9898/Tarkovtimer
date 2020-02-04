@@ -8,6 +8,7 @@
         Title="TarkovTime" Height="130" Width="400" MinWidth="300" MinHeight="120" MouseDown="Window_MouseDown" Background="Black" WindowStyle="None" Icon="exit.bmp" Deactivated="Window_Deactivated">
     <Window.Resources>
         <ImageBrush x:Key="zold" ImageSource="/exit2.bmp" Stretch="Uniform"/>
+        <ImageBrush x:Key="reseticon" ImageSource="/reset.png" Stretch="Fill"/>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -63,7 +64,44 @@
                 </Setter.Value>
             </Setter>
         </Style>
-       
+        <Style x:Key="ButtonStyle2" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource reseticon}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Window.Resources>
     <Grid>
         <Grid.Background>
@@ -78,14 +116,20 @@
                 </ImageBrush.RelativeTransform>
             </ImageBrush>
         </Grid.Background>
+        
+        <Button x:Name="resetbtn" Width="125" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top"  Style="{DynamicResource ButtonStyle2}" Click="resetbtn_Click" >
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
 
         <DockPanel Height="120" LastChildFill="False" VerticalAlignment="Top">
 
 
-
+            
             <StackPanel>
-                <Label  Content="RealTime:"  VerticalAlignment="Top" FontSize="25" Foreground="White" FontFamily="Arial"/>
-                <Label x:Name="Realtimetext" Content="00:00:00"  VerticalAlignment="Top" FontSize="25" FontFamily="Arial" Foreground="White" HorizontalAlignment="Center"/>
+                <Label  Content="RealTime:"  IsHitTestVisible="False"  VerticalAlignment="Top" FontSize="25" Foreground="White" FontFamily="Arial"/>
+                <Label x:Name="Realtimetext" IsHitTestVisible="False"  Content="00:00:00"  VerticalAlignment="Top" FontSize="25" FontFamily="Arial" Foreground="White" HorizontalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel x:Name="Tarkovpanel" DockPanel.Dock="Right" >
@@ -148,8 +192,8 @@
                         </Rectangle>
                     </StackPanel>
                     <Label x:Name="Tarkovtimetext" IsHitTestVisible="False" Content="00:00:00" HorizontalAlignment="Center"  VerticalAlignment="Top"  FontSize="25" DockPanel.Dock="Right" Foreground="White" FontFamily="Arial" BorderBrush="Black"/>
-                   </Grid>
-                <Label x:Name="Tarkovtime12text" IsHitTestVisible="False" Content="00:00:00" HorizontalAlignment="Center"  VerticalAlignment="Top"  FontSize="25" DockPanel.Dock="Right" Foreground="White" FontFamily="Arial" BorderBrush="Black"/>
+                </Grid>
+                <Label x:Name="Tarkovtime12text" Content="00:00:00" HorizontalAlignment="Center"  VerticalAlignment="Top"  FontSize="25" DockPanel.Dock="Right" Foreground="White" FontFamily="Arial" BorderBrush="Black" Background="#00000000"/>
 
             </StackPanel>
         </DockPanel>
@@ -158,7 +202,7 @@
                 <ImageBrush ImageSource="exit.bmp" Stretch="Uniform"/>
             </Button.Background>
         </Button>
-
+        
 
 
 

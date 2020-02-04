@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("tarkovtimer.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("reset.png")]
 
 
