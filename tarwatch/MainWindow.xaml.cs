@@ -44,13 +44,15 @@ namespace tarwatch
            Realtimetext.Content = DateTime.Now.ToString("HH:mm:ss");
             tarkovtime=tarkovtime.AddSeconds(7);
             Tarkovtimetext.Content = tarkovtime.ToString("HH:mm:ss");
-            
+            Tarkovtime12text.Content = tarkovtime.AddHours(12).ToString("HH:mm:ss");
+
         }
         private void Refresh()
         {
             Realtimetext.Content = DateTime.Now.ToString("HH:mm:ss");
             //tarkovtime = tarkovtime.AddSeconds(7);
             Tarkovtimetext.Content = tarkovtime.ToString("HH:mm:ss");
+            Tarkovtime12text.Content = tarkovtime.AddHours(12).ToString("HH:mm:ss");
 
         }
 
@@ -111,6 +113,12 @@ namespace tarwatch
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
+        }
+
+        private void Window_Deactivated(object sender, EventArgs e)
+        {
+            Window window = (Window)sender;
+            window.Topmost = true;
         }
     }
     

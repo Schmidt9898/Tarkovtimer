@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tarwatch"
         mc:Ignorable="d"
-        Title="TarkovTime" Height="130" Width="400" MinWidth="300" MinHeight="120" MouseDown="Window_MouseDown" Background="Black" WindowStyle="None" Icon="exit.bmp">
+        Title="TarkovTime" Height="130" Width="400" MinWidth="300" MinHeight="120" MouseDown="Window_MouseDown" Background="Black" WindowStyle="None" Icon="exit.bmp" Deactivated="Window_Deactivated">
     <Window.Resources>
         <ImageBrush x:Key="zold" ImageSource="/exit2.bmp" Stretch="Uniform"/>
         <Style x:Key="FocusVisual">
@@ -79,7 +79,7 @@
             </ImageBrush>
         </Grid.Background>
 
-        <DockPanel Height="100" LastChildFill="False" VerticalAlignment="Top">
+        <DockPanel Height="120" LastChildFill="False" VerticalAlignment="Top">
 
 
 
@@ -148,10 +148,12 @@
                         </Rectangle>
                     </StackPanel>
                     <Label x:Name="Tarkovtimetext" IsHitTestVisible="False" Content="00:00:00" HorizontalAlignment="Center"  VerticalAlignment="Top"  FontSize="25" DockPanel.Dock="Right" Foreground="White" FontFamily="Arial" BorderBrush="Black"/>
-                </Grid>
+                   </Grid>
+                <Label x:Name="Tarkovtime12text" IsHitTestVisible="False" Content="00:00:00" HorizontalAlignment="Center"  VerticalAlignment="Top"  FontSize="25" DockPanel.Dock="Right" Foreground="White" FontFamily="Arial" BorderBrush="Black"/>
+
             </StackPanel>
         </DockPanel>
-        <Button x:Name="Exit" Width="40" Height="40" Margin="0,0,1,1" Style="{DynamicResource ButtonStyle1}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="Exit_Click" >
+        <Button x:Name="Exit" Width="40" Height="40" Margin="0,0,1,1" Style="{DynamicResource ButtonStyle1}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="Exit_Click" >
             <Button.Background>
                 <ImageBrush ImageSource="exit.bmp" Stretch="Uniform"/>
             </Button.Background>
