@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tarwatch"
         mc:Ignorable="d"
-        Title="TarkovTime" Height="130" Width="400" MinWidth="300" MinHeight="120" MouseDown="Window_MouseDown" Background="Black" WindowStyle="None" Icon="exit.bmp" Deactivated="Window_Deactivated">
+        Title="TarkovTime" Height="130" Width="400" MinWidth="300" MinHeight="120" MouseDown="Window_MouseDown" Background="Black" WindowStyle="None" Icon="exit.bmp" Deactivated="Window_Deactivated" Closing="Window_Closing">
     <Window.Resources>
         <ImageBrush x:Key="zold" ImageSource="/exit2.bmp" Stretch="Uniform"/>
         <ImageBrush x:Key="reseticon" ImageSource="/reset.png" Stretch="Fill"/>

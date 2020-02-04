@@ -25,6 +25,7 @@ namespace tarwatch
         // long Realtime = 0;
         // long Tarkovtime = 0;
         //DateTime tarkovtime;
+        
         DateTime origin;
         DateTime currentTime;
         TimeSpan offsetTime;
@@ -36,8 +37,26 @@ namespace tarwatch
         {
             InitializeComponent();
             //tarkovtime = DateTime.Now;
-            origin = DateTime.Now;
-            offsetTime = new TimeSpan(100,0, 0, 0);
+
+            try
+            {
+                byte[] f=System.IO.File.ReadAllBytes("save.f");
+                origin = new DateTime(BitConverter.ToInt64(f, 0));
+                offsetTime = new TimeSpan(BitConverter.ToInt64(f, 8));
+
+            }catch(System.IO.FileNotFoundException)
+            {
+                origin = DateTime.Now;
+                offsetTime = new TimeSpan(1000, 0, 0, 0, 0);
+            }
+            catch(Exception e)
+            {
+                origin = DateTime.Now;
+                offsetTime = new TimeSpan(1000, 0, 0, 0, 0);
+            }
+
+
+
             dispatcherTimer.Tick += new EventHandler(Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0,0,100);
             dispatcherTimer.Start();
@@ -53,7 +72,8 @@ namespace tarwatch
             elapsedSpan = TimeSpan.FromTicks(elapsedTicks);
             
 
-            Realtimetext.Content = currentTime.ToString("hh':'mm':'ss");
+            Realtimetext.Content = currentTime.ToString("HH:mm:ss");
+
             Tarkovtimetext.Content =  elapsedSpan.ToString("hh':'mm':'ss");
             Tarkovtime12text.Content = elapsedSpan.Add(TimeSpan.FromHours(12)).ToString("hh':'mm':'ss");
 
@@ -65,7 +85,8 @@ namespace tarwatch
             elapsedTicks = (currentTime.Ticks - origin.Ticks) * 7 + offsetTime.Ticks;
             elapsedSpan = TimeSpan.FromTicks(elapsedTicks);
 
-            Realtimetext.Content = currentTime.ToString("hh':'mm':'ss");
+            Realtimetext.Content = currentTime.ToString("HH:mm:ss");
+
             Tarkovtimetext.Content = elapsedSpan.ToString("hh':'mm':'ss");
             Tarkovtime12text.Content = elapsedSpan.Add(TimeSpan.FromHours(12)).ToString("hh':'mm':'ss");
 
@@ -138,7 +159,20 @@ namespace tarwatch
         private void resetbtn_Click(object sender, RoutedEventArgs e)
         {
             origin = DateTime.Now;
-            offsetTime = new TimeSpan(100,0, 0, 0);
+            offsetTime = new TimeSpan(1000,0,0, 0, 0);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            byte[] o = BitConverter.GetBytes(origin.Ticks);
+            byte[] s = BitConverter.GetBytes(offsetTime.Ticks);
+            
+            System.IO.Stream stream = System.IO.File.OpenWrite("save.f");
+            stream.Write(o, 0, 8);
+            stream.Write(s, 0, 8);
+            stream.Flush();
+            stream.Close();
+
         }
     }
     
