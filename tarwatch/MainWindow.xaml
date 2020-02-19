@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tarwatch"
         mc:Ignorable="d"
-        Title="TarkovTime" Height="120" Width="300" MinWidth="300" MinHeight="120"  AllowsTransparency="True"  MouseDown="Window_MouseDown" Background="Black" WindowStyle="None" Icon="exit.bmp" Deactivated="Window_Deactivated" Closing="Window_Closing">
+        Title="TarkovTime" Height="120" Width="300"  AllowsTransparency="True"  MouseDown="Window_MouseDown" Background="Black" WindowStyle="None" Icon="exit.bmp" Deactivated="Window_Deactivated" Closing="Window_Closing" ResizeMode="CanResizeWithGrip" MinWidth="250" MinHeight="50" SizeChanged="Window_SizeChanged">
     <Window.Resources>
         <ImageBrush x:Key="zold" ImageSource="/exit2.bmp" Stretch="Uniform"/>
         <ImageBrush x:Key="reseticon" ImageSource="/reset.png" Stretch="Fill"/>
@@ -128,12 +128,12 @@
 
             
             <StackPanel>
-                <Label  Content="RealTime:"  IsHitTestVisible="False"  VerticalAlignment="Top" FontSize="25" Foreground="White" FontFamily="Arial"/>
+                <Label x:Name="lblrealtime"  Content="RealTime:"  IsHitTestVisible="False"  VerticalAlignment="Top" FontSize="25" Foreground="White" FontFamily="Arial"/>
                 <Label x:Name="Realtimetext" IsHitTestVisible="False"  Content="00:00:00"  VerticalAlignment="Top" FontSize="25" FontFamily="Arial" Foreground="White" HorizontalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel x:Name="Tarkovpanel" DockPanel.Dock="Right" >
-                <Label  Content="TarkovTime:"  VerticalAlignment="Top" FontSize="25" Foreground="White" FontFamily="Arial"/>
+                <Label x:Name="lblTarkotime"  Content="TarkovTime:"  VerticalAlignment="Top" FontSize="25" Foreground="White" FontFamily="Arial"/>
                 <Grid>
                     <StackPanel Orientation="Horizontal">
                         <Rectangle x:Name="hour" Width="55" Focusable="True" PreviewMouseWheel="hour_PreviewMouseWheel" >

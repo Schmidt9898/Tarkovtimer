@@ -143,6 +143,8 @@ namespace tarwatch
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+            if(e.ClickCount==2)
+                this.WindowState = WindowState.Minimized;
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -154,6 +156,7 @@ namespace tarwatch
         {
             Window window = (Window)sender;
             window.Topmost = true;
+            window.Activate();
         }
 
         private void resetbtn_Click(object sender, RoutedEventArgs e)
@@ -173,6 +176,28 @@ namespace tarwatch
             stream.Flush();
             stream.Close();
 
+        }
+
+     
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (this.ActualHeight < 60)
+            {
+                lblrealtime.Visibility = Visibility.Collapsed;
+                lblTarkotime.Visibility = Visibility.Collapsed;
+                Exit.Visibility= Visibility.Collapsed;
+                Tarkovtimetext.FontSize = 15;
+                Tarkovtime12text.FontSize = 15;
+            }
+            else
+            {
+                lblrealtime.Visibility = Visibility.Visible ;
+                lblTarkotime.Visibility = Visibility.Visible;
+                Exit.Visibility = Visibility.Visible;
+                Tarkovtimetext.FontSize = 24;
+                Tarkovtime12text.FontSize = 24;
+            }
         }
     }
     
