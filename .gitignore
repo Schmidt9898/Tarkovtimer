@@ -1,1 +1,3 @@
 tarwatch/.vs/
+tarwatch/obj/*
+tarwatch/bin/*
