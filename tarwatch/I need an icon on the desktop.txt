@@ -1,0 +1,4 @@
+1. Right click on the exe
+2. Create shortcut
+3. Right click on the shortcut,properties,iconchange
+4. find and select the tarkovtimer.ico
